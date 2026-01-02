@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithRedirect, signOut } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
 import { useNavigate } from 'react-router-dom';
 import { MobileNav } from './MobileNav';
@@ -36,7 +36,7 @@ import {
     const navigate = useNavigate();
 
     function handleLogin() {
-        signInWithPopup(auth, provider).then((result) => {
+        signInWithRedirect(auth, provider).then((result) => {
             setIsAuth(true);
             setIsLoggedIn(auth);
             localStorage.setItem("isAuth", true);
