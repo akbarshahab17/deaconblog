@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { auth, provider } from '../firebase/config';
+import { useNavigate } from 'react-router-dom';
 import { MobileNav } from './MobileNav';
 import Logo from "../assets/logo.png";
 import {
@@ -32,12 +33,14 @@ import {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isAuth") || false)
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth") || false);
+    const navigate = useNavigate();
 
     function handleLogin() {
         signInWithPopup(auth, provider).then((result) => {
             setIsAuth(true);
             setIsLoggedIn(auth);
             localStorage.setItem("isAuth", true);
+            navigate("/");
         })
     }
 
@@ -116,7 +119,7 @@ import {
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {!isLoggedIn ? (
                 <>
-                    <Link onClick={handleLogin} to="./login" className="text-sm/6 font-semibold text-gray-900 mx-2">
+                    <Link onClick={handleLogin} to="./login" className="p-2 text-sm/6 font-semibold text-white mx-2 bg-blue-500 rounded-xl">
                         Log in <span aria-hidden="true">&rarr;</span>
                     </Link>
                 </>

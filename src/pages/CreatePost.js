@@ -11,6 +11,13 @@ export const CreatePost = () => {
   async function handleCreatePost(event){
     event.preventDefault();
 
+    if (!auth.currentUser) {
+      console.error("User is not authenticated. Cannot create post.");
+      // Optionally, redirect to login page or show an error to the user
+      // navigate("/login");
+      return; // Stop the function execution
+    }
+
     const document = {
       title: event.target.title.value,
       description: event.target.description.value,
