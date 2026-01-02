@@ -1,0 +1,9 @@
+export { Categories } from './Categories';
+export { CreatePost } from './CreatePost';
+export { Home } from './Home';
+export { Login } from './Login';
+export { PostDetail } from './PostDetail';
+export { Register } from './Register';
+export { NotFound } from './NotFound';
+export { Featured } from './Featured';  
+export { AboutUs } from './AboutUs';
